@@ -20,10 +20,10 @@ class Custom:
         )
         self.sportstate_subscriber.Init(self.SportStateMessageHandler, 10)
 
-    def SportStateMessageHandler(self, msg: SportModeState_):
-        self.low_state = msg
-        state_code = msg.error_code
-        print(f"Sport Mode State: {state_code}")
+    ddef SportStateMessageHandler(self, msg: SportModeState_):
+    """Handle incoming SportModeState messages."""
+    self.low_state = msg
+    print(f"[SportState] Error Code: {msg.error_code}, Mode: {msg.mode}")
 
 
 if __name__ == "__main__":
