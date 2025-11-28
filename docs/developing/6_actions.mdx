@@ -36,14 +36,14 @@ The Speech and TTS action plugin allows agents to speak using with a text-to-spe
 
 Each action consists of:
 
-1. Interface (`interface.py`): Defines input/output types.
-2. Implementation (`implementation/`): Business logic, if any. Otherwise, use passthrough.
-3. Connector (`connector/`): Code that connects `OM1` to specific virtual or physical environments, typically through middleware (e.g. custom APIs, `ROS2`, `Zenoh`, or `CycloneDDS`)
+1. Interface (`interface.py`): Defines the input and output types.
+2. Implementation (`implementation/`): Contains business logic. If no logic is required, use `passthrough`.
+3. Connector (`connector/`): Connects OM1 to specific virtual or physical environments, typically through middleware (e.g. custom APIs, `ROS2`, `Zenoh`, or `CycloneDDS`)
 
 ```tree
 actions/
 └── move_{unique_hardware_id}/
-    ├── interface.py      # Defines MoveInput/Output
+    ├── interface.py      # Defines MoveInput/MoveOutput
     ├── implementation/
     │   └── passthrough.py
     └── connector/
@@ -52,4 +52,12 @@ actions/
         └── unitree.py
 ```
 
-In general, each robot will have specific capabilities, and therefore, each action will be hardware specific. For example, if you are adding support for the Unitree G1 Humanoid version 13.2b, which supports a new movement subtype such as `dance_2`, you could name the updated action `move_unitree_g1_13_2b` and select that action in your `unitree_g1.json` configuration file.
+
+In general, each robot has its own set of capabilities, so each action is hardware-specific.
+
+For example, if you are adding support for the Unitree G1 Humanoid (version 13.2b), which introduces a new movement subtype such as `dance_2`, you could name the updated action:
+
+    move_unitree_g1_13_2b
+
+and reference that action in your `unitree_g1.json` configuration file.
+
